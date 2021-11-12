@@ -13,13 +13,14 @@ function App() {
     <div className="App">
       <FixedNavbar />
       <Switch>
-        <Route path="/tutor" component={Tutor} />
-        <Route path="/personal-instructor" component={PersonalInstructor} />
-        <Route path="/discussion-forum" component={DiscussionForum} />
-        <Route path="/aboutus" component={AboutUs}/>
-        <Route path="/pricing" component={Pricing}/>
-        <Route path="/home"component={Home} />
-        <Route path="/"component={Home} />
+        <Route exact path="/tutor" component={Tutor} />
+        <Route exact path="/personal-instructor" component={PersonalInstructor} />
+        <Route exact path="/personal-instructor/chat/:ID" component={DiscussionForum} />
+        <Route exact path="/discussion-forum" component={DiscussionForum} />
+        <Route exact path="/aboutus" component={AboutUs}/>
+        <Route exact path="/pricing" component={Pricing}/>
+        <Route exact path="/home"component={Home} />
+        <Route exact path="/"component={Home} />
       </Switch>
     </div>
   );
