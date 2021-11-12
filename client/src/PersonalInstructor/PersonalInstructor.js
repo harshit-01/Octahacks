@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import {Dialog,DialogContent,DialogTitle} from '@mui/material';
 import { Container, Card, Row,Col, Button} from 'react-bootstrap';
 import "./PersonalInstructor.css";
+import { v1 as uuid } from "uuid";
+import { useHistory } from "react-router-dom";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -31,6 +33,8 @@ const PersonalInstructor = () => {
     const [openCallDialog, setOpenCallDialog] = React.useState(false);
     const [openEmailDialog, setOpenEmailDialog] = React.useState(false);
 
+    const history = useHistory();
+
     const handleOpen = (event) => {
         if(event.target.name === "call"){
             setOpenCallDialog(true);
@@ -47,6 +51,12 @@ const PersonalInstructor = () => {
         }
     };
 
+    const handleChat = () => {
+        const ID = uuid();
+        // send Id , link to the server 
+        history.push(`/personal-instructor/chat/${ID}`);
+    }
+
     return (
         <Container>
             <Row >
@@ -57,7 +67,7 @@ const PersonalInstructor = () => {
                     <Card border="info" className="m-2" >
                         <Card.Img variant="top" src="https://www.kautilyacareers.com/utilities/images/chat.jpg" className="contact-instructor-img mt-2 p-2"/>
                         <Card.Body className="text-center">
-                            <Button variant="outline-info" className="rounded-pill px-4">Chat</Button>
+                            <Button variant="outline-info" className="rounded-pill px-4" onClick={handleChat}>Chat</Button>
                         </Card.Body>
                     </Card>
                 </Col>
