@@ -81,8 +81,8 @@ const PersonalInstructor = () => {
             <Dialog open={openCallDialog} onClose={handleClose}>
                 <DialogTitle>Call</DialogTitle>
                 <DialogContent>
-                    <p className="font-weight-light"> 
-                        Solve your Doubt by connecting with your assigned personal instructor through CALL. 
+                    <p className="font-weight-normal"> 
+                        Solve your doubt by connecting with your assigned SME through call. 
                     </p>
                     <Formik
                         initialValues={{
@@ -114,8 +114,8 @@ const PersonalInstructor = () => {
             <Dialog open={openEmailDialog} onClose={handleClose}>
                 <DialogTitle>Email</DialogTitle>
                 <DialogContent>
-                    <p className="font-weight-light"> 
-                        Solve your Doubt by connecting with your assigned personal instructor through EMAIL. 
+                    <p className="font-weight-normal"> 
+                        Solve your doubt by connecting with your assigned SME through Email. 
                     </p>
 
                     <Formik

@@ -38,10 +38,10 @@ const AboutUs = () => {
     return (
         <Container>
             <Row className="m-3">
-                <h1 className="text-primary font-weight-bolder">About Us</h1>
+                <h2 className="text-primary font-weight-bold">About Us</h2>
             </Row>
             <Row className="m-3">
-                <h4>
+                <p>
                     We are an Ed-tech startup. We provide solutions to your subject-related queries. 
                     <br />
                     Our main motive is to enlighten you for your shining future. We provide knowledge for various entrance exams.
@@ -49,7 +49,7 @@ const AboutUs = () => {
                     Connect with your assigned  Subject Matter Expert (via Call, Chat, Email, 
                     Video <span class="badge badge-info p-2">Coming Soon !!</span> {'  '}
                     ) for more clarification related to your doubts.
-                </h4>
+                </p>
             </Row>
             <Row className="m-3 justify-content-center">
                 <h4 className="text-center text-info font-weight-bolder"> Meet Our Team </h4>
