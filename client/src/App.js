@@ -6,15 +6,16 @@ import Home from './Home/Home.js';
 import Pricing from './Pricing/Pricing.js'
 import DiscussionForum from './DiscussionForum/DiscussionForum'
 
+
 function App() {
   return (
     <div className="App">
       <FixedNavbar />
       <Switch>
         <Route path="/tutor" component={Tutor} />
-        <Route path="/personal-instructor" />
+        <Route path="/personal-instructor" component={PersonalInstructor} />
         <Route path="/discussion-forum" component={DiscussionForum} />
-        <Route path="/aboutus" />
+        <Route path="/aboutus" component={AboutUs}/>
         <Route path="/pricing" component={Pricing}/>
         <Route path="/home"component={Home} />
         <Route path="/"component={Home} />

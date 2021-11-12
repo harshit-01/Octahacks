@@ -1,0 +1,10 @@
+.contact-instructor-img {
+    height: 25vw;
+    object-fit: contain;
+}
+
+@media screen and (min-width:768px) {
+    .contact-instructor-img{
+        height: 15vw;
+    }
+}

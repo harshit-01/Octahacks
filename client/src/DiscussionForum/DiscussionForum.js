@@ -44,4 +44,4 @@ const DiscussionForum = () => {
   )
 }
 
-export default DiscussionForum;
+export default DiscussionForum
