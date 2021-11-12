@@ -1,0 +1,20 @@
+body { padding-top: 100px; }
+@media screen and (max-width:400px) {
+    body { padding-top: 125px; }
+}
+.nav-link {
+ color: floralwhite !important; 
+}  
+.border{
+    border-bottom: 1px solid gray;
+}
+@media screen and (min-width:768px) {
+    .tutor{
+        width: 20rem;
+    }
+}
+.news{
+    border:2px solid rgb(194, 192, 192);
+    height:30em;
+    overflow: auto;
+}
