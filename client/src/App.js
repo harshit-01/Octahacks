@@ -15,7 +15,8 @@ function App() {
       <FixedNavbar />
       <Switch>
         <Route path="/tutor" component={Tutor} />
-        <Route path="/personal-instructor" component={PersonalInstructor} />
+        <Route exact path="/personal-instructor" component={PersonalInstructor} />
+        <Route path="/personal-instructor/chat/:ID" component={DiscussionForum} />
         <Route path="/discussion-forum" component={DiscussionForum} />
         <Route path="/aboutus" component={AboutUs}/>
         <Route path="/pricing" component={Pricing}/>
