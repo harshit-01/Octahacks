@@ -4,7 +4,7 @@ import DiscussionBoard from 'react-discussion-board'
 
 import 'react-discussion-board/dist/index.css'
 
-const DiscussionBoard = () => {
+const DiscussionForum = () => {
   const allPosts = [
     {
       profileImage:
@@ -41,4 +41,4 @@ const DiscussionBoard = () => {
   }
 }
 
-export default DiscussionBoard
+export default DiscussionForum
