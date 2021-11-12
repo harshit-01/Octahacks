@@ -5,7 +5,8 @@ import Tutor  from './Resources/Tutor';
 import Home from './Home/Home.js';
 import Pricing from './Pricing/Pricing.js'
 import DiscussionForum from './DiscussionForum/DiscussionForum'
-
+import PersonalInstructor from './PersonalInstructor/PersonalInstructor.js';
+import AboutUs from "./AboutUs/AboutUs.js";
 
 function App() {
   return (
