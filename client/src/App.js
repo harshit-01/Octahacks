@@ -4,7 +4,7 @@ import FixedNavbar from './Navbar/navbar.js'
 import Tutor  from './Resources/Tutor';
 import Home from './Home/Home.js';
 import Pricing from './Pricing/Pricing.js'
-import DiscussionBoard from './DiscussionBoard/DiscussionBoard.js'
+import DiscussionForum from './DiscussionForum/DiscussionForum'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route path="/tutor" component={Tutor} />
         <Route path="/personal-instructor" />
-        <Route path="/discussion-forum" component={DiscussionBoard} />
+        <Route path="/discussion-forum" component={DiscussionForum} />
         <Route path="/aboutus" />
         <Route path="/pricing" component={Pricing}/>
         <Route path="/home"component={Home} />
