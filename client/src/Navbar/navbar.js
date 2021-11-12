@@ -35,7 +35,8 @@ const FixedNavbar = ()=>{
     return (
         <Container>
             <Navbar collapseOnSelect expand="md" bg="info" variant="light" fixed="top">
-                <Navbar.Brand href="#" className="font-weight-bold" style={{color:"#000080"}}><img src="https://static.thenounproject.com/png/2390111-200.png" alt="solution" style={{height:"60px",width:"60px"}}></img>Solutionists</Navbar.Brand>
+                <Navbar.Brand href="#" className="font-weight-bold" style={{color:"#000080"}}><img src="https://static.thenounproject.com/png/2390111-200.png" alt="solution" style={{height:"60px",width:"60px"}}></img><Link to="/home" style={{color:"blue",
+                        textDecoration:"none"}}>Solutionists</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">

@@ -4,7 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { pink } from '@mui/material/colors';
 import Stack from '@mui/material/Stack';
-
+import { withRouter } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -12,10 +12,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const Pricing = ()=>{
+const Pricing = (props)=>{
     const [open, setOpen] = React.useState(false);
     const handleClick = () => {
-        setOpen(true);
+        props.history.push('/payment');
+        //setOpen(true);
     };
 
     const handleClose = (event, reason) => {
@@ -149,4 +150,4 @@ const Pricing = ()=>{
         </Container>
     )
 }
-export default Pricing;
+export default withRouter(Pricing);

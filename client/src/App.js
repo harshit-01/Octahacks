@@ -7,6 +7,7 @@ import Pricing from './Pricing/Pricing.js'
 import DiscussionForum from './DiscussionForum/DiscussionForum'
 import PersonalInstructor from './PersonalInstructor/PersonalInstructor.js';
 import AboutUs from "./AboutUs/AboutUs.js";
+import Payment from "./Payment/Payment.js";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/discussion-forum" component={DiscussionForum} />
         <Route path="/aboutus" component={AboutUs}/>
         <Route path="/pricing" component={Pricing}/>
-        <Route path="/home"component={Home} />
+        <Route path="/home" component={Home} />
+        <Route path="/payment" component={Payment} />
         <Route path="/"component={Home} />
       </Switch>
     </div>
