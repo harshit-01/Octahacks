@@ -56,7 +56,12 @@ export const createEmail = (email)=>async (dispatch) => {
 
 export const createSME = (student)=>async (dispatch) => {
   try {
-    await api.createSME(student);
+    let x= {
+      name:student.firstName,
+      phone:student.phone,
+      email:student.email
+    }
+    await api.createSME(x);
   } catch (error) {
     console.log(error.message);
   }

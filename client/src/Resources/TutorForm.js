@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import { Formik, Form, useField } from 'formik';
 import {Container,Row,Col,Card,Button} from 'react-bootstrap'
 import * as Yup from 'yup';
+import {createSME} from "../Redux/actions/UserAction.js"
+import {useDispatch} from "react-redux"
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const MyTextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -26,6 +31,9 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const MyCheckbox = ({ children, ...props }) => {
   // React treats radios and checkbox inputs differently other input types, select, and textarea.
   // Formik does this too! When you specify `type` to useField(), it will
@@ -67,6 +75,15 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 // And now we can use these
 const TutorForm = ()=>{
+  const dispatch = useDispatch();
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+    return;
+    }
+
+    setOpenAlert(false);
+  };
+  const [openAlert,setOpenAlert] = React.useState(false);
   return (
     <>
       <Formik
@@ -89,7 +106,7 @@ const TutorForm = ()=>{
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
-          phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
+          phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
           acceptedTerms: Yup.boolean()
             .required('Required')
             .oneOf([true], 'You must accept the terms and conditions.'),
@@ -101,8 +118,9 @@ const TutorForm = ()=>{
             .required('Required'),
         })}
         onSubmit={(values, { setSubmitting }) => {
+          dispatch(createSME(values))
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            setOpenAlert(true);
             setSubmitting(false);
           }, 400);
         }}
@@ -131,7 +149,7 @@ const TutorForm = ()=>{
           <br />
           <MyTextInput
             label="Phone Number :"
-            name="phoneNumber"
+            name="phone"
             type="tel"
             placeholder="9999999999"
           />
@@ -151,6 +169,15 @@ const TutorForm = ()=>{
           <Button type="submit" variant="outline-info">Submit</Button>
         </Form>
       </Formik>
+      {openAlert ?
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <Snackbar anchorOrigin={{ vertical: "top",horizontal: "right"}} open={openAlert} autoHideDuration={4000} onClose={handleCloseAlert}>
+                    <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+                        Details sent to your email successfully. Please check.
+                    </Alert>
+                </Snackbar>
+                    {/* <Alert severity="success">This is a success message!</Alert> */}
+      </Stack>:null}
     </>
   );
 };

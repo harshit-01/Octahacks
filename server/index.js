@@ -170,8 +170,14 @@ app.post('/email',async(req,res) => {
 });
 
 app.post('/addSME', (req,res) => {
-    const data = req.body.student;
-    instructor.push(data);
+    // console.log(req.body)
+    const {name,email,phone} = req.body;
+    instructor.push({
+        name:name,
+        email:email,
+        phone:phone
+    });
+    console.log(instructor)
     res.status(200).send("added");
 });
 
