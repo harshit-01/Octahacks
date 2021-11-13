@@ -9,8 +9,8 @@ const Home = (props)=>{
     return(
         <Container>
             <Row className="mb-3">
-                <Col md={6}>
-                    <Card border="info" style={{ width: '30rem' }}>
+                <Col sm={6} md={6}>
+                    <Card border="info" className="home">
                         <Card.Header className="text-info font-weight-bold">
                         <ForumIcon /> Discussion Forum
                         <span className="badge badge-primary ml-1">Info</span></Card.Header>
@@ -27,8 +27,8 @@ const Home = (props)=>{
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={5}>
-                    <Card border="info" style={{ width: '30rem' }}>
+                <Col sm={6} md={5}>
+                    <Card border="info" className="home mt-1 mt-sm-0">
                         <Card.Header className="text-info font-weight-bold">
                         <i class="fa fa-phone mr-1" aria-hidden="true"></i>Call/Email Facility
                         <span className="badge badge-primary ml-1">Info</span></Card.Header>

@@ -11,7 +11,10 @@ app.use([
 ]);
 
 let instructor = []; 
-let user = [];
+let user = [{
+    id:"",
+    isPremiumUser:false
+}];
 let generalPosts = [];
 let SMEPosts = []; 
 /*

@@ -79,7 +79,7 @@ const Pricing = (props)=>{
                     </Card>
                 </Col>
                 <Col md={5}>
-                    <Card border="info">
+                    <Card border="info" className="mt-1 mt-md-0">
                         <Card.Header style={{height:"12.7rem",fontSize:"2rem"}} className="d-flex justify-content-center align-items-center text-info font-weight-bold font-italic">Premium Tier
                         </Card.Header>
                         <Card.Body>
