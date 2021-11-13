@@ -32,23 +32,24 @@ const PersonalInstructor = () => {
 
     const [openCallDialog, setOpenCallDialog] = React.useState(false);
     const [openEmailDialog, setOpenEmailDialog] = React.useState(false);
+    const [openVideoDialog, setOpenVideoDialog] = React.useState(false);
 
     const history = useHistory();
 
     const handleOpen = (event) => {
         if(event.target.name === "call"){
             setOpenCallDialog(true);
-        }else{
+        }else if(event.target.name === "email"){
             setOpenEmailDialog(true);
+        }else{
+            setOpenVideoDialog(true);
         }
     };
 
-    const handleClose = (event) => {
-        if(event.target.name === "call"){
+    const handleClose = () => {
             setOpenCallDialog(false);
-        }else{
             setOpenEmailDialog(false);
-        }
+            setOpenVideoDialog(false);
     };
 
     const handleChat = () => {
@@ -62,7 +63,15 @@ const PersonalInstructor = () => {
             <Row >
                 <h3 className="m-2 p-2">Choose your option how do you want to solve your doubt?</h3>
             </Row>
-            <Row xs={1} md={3} className="mt-3">
+            <Row xs={1} md={4} className="mt-3">
+                <Col>
+                    <Card border="info" className="m-2" >
+                        <Card.Img variant="top" src="https://cdn.dribbble.com/users/232189/screenshots/3507230/media/369ae4694cb418636b0d90d8a1d40f5f.jpg" className="contact-instructor-img mt-2 p-3" />
+                        <Card.Body className="text-center">
+                            <Button variant="outline-info" name="video" className="rounded-pill px-4" onClick={handleOpen}>Video Chat</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
                 <Col>
                     <Card border="info" className="m-2" >
                         <Card.Img variant="top" src="https://www.kautilyacareers.com/utilities/images/chat.jpg" className="contact-instructor-img mt-2 p-2"/>
@@ -154,6 +163,18 @@ const PersonalInstructor = () => {
                             <Button name="email" variant="outline-info" onClick={handleClose}>Cancel</Button>
                         </Form>
                     </Formik>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog open={openVideoDialog} onClose={handleClose}>
+                <DialogTitle>Video Chat</DialogTitle>
+                <DialogContent>
+                    <p className="font-weight-normal"> 
+                        Solve your doubt by connecting with your assigned SME through Video Chat. 
+                    </p>
+                    <h6 className="text-center text-info">Coming Soon!!!</h6>
+                    <br />
+                    <Button name="video" variant="outline-info" onClick={handleClose}>Cancel</Button>
                 </DialogContent>
             </Dialog>
 
