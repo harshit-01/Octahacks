@@ -10,7 +10,7 @@ const Home = (props)=>{
         <Container>
             <Row className="mb-3">
                 <Col md={6}>
-                    <Card border="info" style={{ width: '37rem' }}>
+                    <Card border="info" style={{ width: '30rem' }}>
                         <Card.Header className="text-info font-weight-bold">
                         <ForumIcon /> Discussion Forum
                         <span className="badge badge-primary ml-1">Info</span></Card.Header>
@@ -27,8 +27,8 @@ const Home = (props)=>{
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={6}>
-                    <Card border="info" style={{ width: '37rem' }}>
+                <Col md={5}>
+                    <Card border="info" style={{ width: '30rem' }}>
                         <Card.Header className="text-info font-weight-bold">
                         <i class="fa fa-phone mr-1" aria-hidden="true"></i>Call/Email Facility
                         <span className="badge badge-primary ml-1">Info</span></Card.Header>

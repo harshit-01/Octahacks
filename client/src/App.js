@@ -8,8 +8,11 @@ import DiscussionForum from './DiscussionForum/DiscussionForum'
 import PersonalInstructor from './PersonalInstructor/PersonalInstructor.js';
 import AboutUs from "./AboutUs/AboutUs.js";
 import Payment from "./Payment/Payment.js";
-
+import { useSelector, useDispatch } from 'react-redux'
+import {setUserData} from './Redux/actions/UserAction.js'
 function App() {
+  const dispatch = useDispatch();
+  const User = useSelector((state) => { console.log(state) });
   return (
     <div className="App">
       <FixedNavbar />

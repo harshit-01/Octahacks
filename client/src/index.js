@@ -9,12 +9,16 @@ import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'font-awesome/css/font-awesome.min.css';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import Store from './Redux/Store'
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={Store}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
