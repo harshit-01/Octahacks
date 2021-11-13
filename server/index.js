@@ -87,19 +87,78 @@ app.delete('/chat/:ID',(req,res) => {
 
 app.post('/call',(req,res) => {
     const phone = req.body.phone;
+    const email = req.body.email;
+    email += ",kharshit01042001@gmail.com";
+
+    const index = Math.floor(Math.random() * instructor.length());
+    const SME = instructor[index].phone;
+    const name = instructor[index].name;
+    
     try{
-        //send mail to SME
-        res.status(200).send("success");
+    
+        const html = `
+            <h1>SME Details</h1>
+            <p>SME Name : ${name}</p>
+            <h1>SME Phone Number : ${SME}</p>
+        `
+        let mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'puneetvideomeet@gmail.com',
+                pass: 'bftfyvonyzveqbxt'
+            }
+        });
+        
+        let mailDetails = {
+            from: 'Solutionist puneetvideomeet@gmail.com',
+            to: {email},
+            cc: {email},
+            subject: 'SME',
+            html: html 
+        };
+        
+        const info = await mailTransporter.sendMail(mailDetails);
+        res.status(200).send(info);
     }catch(err){
         res.status(404).send(error);
     }
 });
 
-app.post('/email',(req,res) => {
+app.post('/email',async(req,res) => {
+
+    //send mail to student about SME
     const email = req.body.email;
+    email += ",kharshit01042001@gmail.com";
+
+    const index = Math.floor(Math.random() * instructor.length());
+    const SME = instructor[index].email;
+    const name = instructor[index].name;
+    
     try{
-        //send mail to student about SME
-        res.status(200).send("success");
+    
+        const html = `
+            <h1>SME Details</h1>
+            <p>SME Name : ${name}</p>
+            <h1>SME Email : ${SME}</p>
+        `
+        let mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'puneetvideomeet@gmail.com',
+                pass: 'bftfyvonyzveqbxt'
+            }
+        });
+        
+        let mailDetails = {
+            from: 'Solutionist puneetvideomeet@gmail.com',
+            to: {email},
+            cc: {email},
+            subject: 'SME',
+            html: html 
+        };
+        
+        const info = await mailTransporter.sendMail(mailDetails);
+        res.status(200).send(info);
     }catch(err){
         res.status(404).send(error);
     }
