@@ -8,7 +8,13 @@ const userReducer = function (state = initialState, action) {
       case actionType.SET_USER_DATA: {
         return {
           ...state,
-          user: true
+          user: action.payload
+        }
+      }
+      case actionType.SET_UPDATE: {
+        return {
+          ...state,
+          user: action.payload
         }
       }
       default: {
