@@ -10,6 +10,8 @@ import AboutUs from "./AboutUs/AboutUs.js";
 import Payment from "./Payment/Payment.js";
 import { useSelector, useDispatch } from 'react-redux'
 import {setUserData} from './Redux/actions/UserAction.js'
+import Footer from './Footer/Footer.js';
+
 function App() {
   const dispatch = useDispatch();
   const User = useSelector((state) => { console.log(state) });
@@ -27,6 +29,7 @@ function App() {
         <Route path="/payment" component={Payment} />
         <Route path="/"component={Home} />
       </Switch>
+      <Footer />
     </div>
   );
 }
