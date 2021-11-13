@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useEffect}from 'react';
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 import {Dialog,DialogContent,DialogTitle} from '@mui/material';
@@ -6,6 +6,11 @@ import { Container, Card, Row,Col, Button} from 'react-bootstrap';
 import "./PersonalInstructor.css";
 import { v1 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
+import {useDispatch} from "react-redux"
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import {createCall ,createEmail}  from "../Redux/actions/UserAction.js"
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -27,13 +32,18 @@ const MyTextInput = ({ label, ...props }) => {
         </Container>
     );
 };
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 const PersonalInstructor = () => {
 
     const [openCallDialog, setOpenCallDialog] = React.useState(false);
     const [openEmailDialog, setOpenEmailDialog] = React.useState(false);
     const [openVideoDialog, setOpenVideoDialog] = React.useState(false);
-
+    const [openAlert,setOpenAlert] = React.useState(false);
+    const [emailAlert,setEmailAlert] = React.useState(false);
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const handleOpen = (event) => {
@@ -57,7 +67,20 @@ const PersonalInstructor = () => {
         // send Id , link to the server 
         history.push(`/personal-instructor/chat/${ID}`);
     }
+    const handleCloseAlert = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
 
+        setOpenAlert(false);
+    };
+    const handleCloseEmail = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setEmailAlert(false);
+    };
     return (
         <Container>
             <Row >
@@ -105,27 +128,28 @@ const PersonalInstructor = () => {
                     </p>
                     <Formik
                         initialValues={{
-                            phoneNumber: '',
+                            phone: '',
                             email: ''
                         }}
 
                         validationSchema={Yup.object({
-                            phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
+                            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
                             email: Yup.string()
                                 .email('Invalid email address')
                                 .required('Required')
                         })}
 
                         onSubmit={(values, { setSubmitting }) => {
+                            dispatch(createCall(values));
                             setTimeout(() => {
                                 setOpenCallDialog(false);
-                                alert(JSON.stringify(values, null, 2));
+                                setOpenAlert(true);
                                 setSubmitting(false);
                             }, 400);
                         }}
                     >
                         <Form>
-                            <MyTextInput label="Phone Number :" name="phoneNumber" type="tel" placeholder="9999999999" />
+                            <MyTextInput label="Phone Number :" name="phone" type="tel" placeholder="9999999999" />
                             <br />
                             <MyTextInput label="Email Address :" name="email" type="email" placeholder="jane@formik.com" />
                             <br />
@@ -155,9 +179,10 @@ const PersonalInstructor = () => {
                         })}
 
                         onSubmit={(values, { setSubmitting }) => {
+                            dispatch(createEmail(values));
                             setTimeout(() => {
                                 setOpenEmailDialog(false);
-                                alert(JSON.stringify(values, null, 2));
+                                setEmailAlert(true);
                                 setSubmitting(false);
                             }, 400);
                         }}
@@ -183,7 +208,24 @@ const PersonalInstructor = () => {
                     <Button name="video" variant="outline-info" onClick={handleClose}>Cancel</Button>
                 </DialogContent>
             </Dialog>
-
+            {openAlert ?
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <Snackbar anchorOrigin={{ vertical: "top",horizontal: "right"}} open={openAlert} autoHideDuration={4000} onClose={handleCloseAlert}>
+                    <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+                        Details sent to your email successfully. Please check.
+                    </Alert>
+                </Snackbar>
+                    {/* <Alert severity="success">This is a success message!</Alert> */}
+            </Stack>:null}
+            {emailAlert ?
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <Snackbar anchorOrigin={{ vertical: "top",horizontal: "right"}} open={emailAlert} autoHideDuration={4000} onClose={handleCloseEmail}>
+                    <Alert onClose={handleCloseEmail} severity="success" sx={{ width: '100%' }}>
+                        Details sent to your email successfully. Please check.
+                    </Alert>
+                </Snackbar>
+                    {/* <Alert severity="success">This is a success message!</Alert> */}
+            </Stack>:null}
         </Container>
     )
 }

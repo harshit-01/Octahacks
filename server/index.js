@@ -10,7 +10,18 @@ app.use([
     bodyParser.urlencoded({ limit: '30mb', extended: true})
 ]);
 
-let instructor = []; 
+let instructor = [
+    {
+        name:"Harshit",
+        email:"kharshit01042001@gmail.com",
+        phone: 9999999999
+    },
+    {
+        name:"Puneet",
+        email:"puneetvideomeet@gmail.com",
+        phone: 9999999998
+    }
+]; 
 let user = [{
     id:"",
     isPremiumUser:false
@@ -87,19 +98,17 @@ app.delete('/chat/:ID',(req,res) => {
 
 app.post('/call',async(req,res) => {
     const phone = req.body.phone;
-    const email = req.body.email;
-    email += ",kharshit01042001@gmail.com";
-
-    const index = Math.floor(Math.random() * instructor.length());
-    const SME = instructor[index].phone;
+    let email = req.body.email;
+    //email += ",kharshit01042001@gmail.com";
+    const index = Math.floor(Math.random() * instructor.length);
     const name = instructor[index].name;
-    
+    const SME = instructor[index].phone;
     try{
     
         const html = `
             <h1>SME Details</h1>
-            <p>SME Name : ${name}</p>
-            <h1>SME Phone Number : ${SME}</p>
+            <h4>SME Name : ${name}</h4>
+            <h4>SME Phone Number : ${SME}</h4>
         `
         let mailTransporter = nodemailer.createTransport({
             service: 'gmail',
@@ -111,8 +120,8 @@ app.post('/call',async(req,res) => {
         
         let mailDetails = {
             from: 'Solutionist puneetvideomeet@gmail.com',
-            to: {email},
-            cc: {email},
+            to: email,
+            cc: email,
             subject: 'SME',
             html: html 
         };
@@ -125,21 +134,19 @@ app.post('/call',async(req,res) => {
 });
 
 app.post('/email',async(req,res) => {
-
+    //console.log(req.body.email)
     //send mail to student about SME
-    const email = req.body.email;
-    email += ",kharshit01042001@gmail.com";
+    let email = req.body.email;
+    //email += ",kharshit01042001@gmail.com";
 
-    const index = Math.floor(Math.random() * instructor.length());
+    const index = Math.floor(Math.random() * instructor.length);
     const SME = instructor[index].email;
     const name = instructor[index].name;
-    
     try{
-    
         const html = `
             <h1>SME Details</h1>
-            <p>SME Name : ${name}</p>
-            <h1>SME Email : ${SME}</p>
+            <h4>SME Name : ${name}</h4>
+            <h4>SME Email : ${SME}</h4>
         `
         let mailTransporter = nodemailer.createTransport({
             service: 'gmail',
@@ -148,19 +155,17 @@ app.post('/email',async(req,res) => {
                 pass: 'bftfyvonyzveqbxt'
             }
         });
-        
         let mailDetails = {
             from: 'Solutionist puneetvideomeet@gmail.com',
-            to: {email},
-            cc: {email},
+            to: email,
+            cc: email,
             subject: 'SME',
             html: html 
         };
-        
         const info = await mailTransporter.sendMail(mailDetails);
         res.status(200).send(info);
     }catch(err){
-        res.status(404).send(error);
+        res.status(404).send(err.message);
     }
 });
 
