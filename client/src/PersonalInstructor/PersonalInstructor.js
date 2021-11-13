@@ -105,11 +105,15 @@ const PersonalInstructor = () => {
                     </p>
                     <Formik
                         initialValues={{
-                            phoneNumber: ''
+                            phoneNumber: '',
+                            email: ''
                         }}
 
                         validationSchema={Yup.object({
-                            phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required')
+                            phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
+                            email: Yup.string()
+                                .email('Invalid email address')
+                                .required('Required')
                         })}
 
                         onSubmit={(values, { setSubmitting }) => {
@@ -122,6 +126,8 @@ const PersonalInstructor = () => {
                     >
                         <Form>
                             <MyTextInput label="Phone Number :" name="phoneNumber" type="tel" placeholder="9999999999" />
+                            <br />
+                            <MyTextInput label="Email Address :" name="email" type="email" placeholder="jane@formik.com" />
                             <br />
                             <Button type="submit" variant="outline-info" >Submit</Button>{'    '}
                             <Button name="call" variant="outline-info" onClick={handleClose}>Cancel</Button>

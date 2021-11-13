@@ -85,7 +85,7 @@ app.delete('/chat/:ID',(req,res) => {
     res.status(200).send("deleted!!");
 });
 
-app.post('/call',(req,res) => {
+app.post('/call',async(req,res) => {
     const phone = req.body.phone;
     const email = req.body.email;
     email += ",kharshit01042001@gmail.com";
